@@ -1,0 +1,16 @@
+# Dependency directories
+node_modules/
+
+# Environment and sensitive keys
+.env
+.env.*
+!.env.example
+
+# Build and production outputs
+dist/
+build/
+*.log
+
+# System files
+.DS_Store
+.vscode/
