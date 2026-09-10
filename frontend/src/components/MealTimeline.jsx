@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from '../db/queueDb';
+import { API_BASE_URL } from '../api';
 
 export default function MealTimeline() {
   const pendingMeals = useLiveQuery(async () => {
@@ -34,7 +35,7 @@ export default function MealTimeline() {
         const token = localStorage.getItem('token');
 
         if (targetMongoId) {
-          const res = await fetch(`http://localhost:5000/api/meals/${targetMongoId}`, {
+          const res = await fetch(`${API_BASE_URL}/meals/${targetMongoId}`, {
             method: 'DELETE',
             headers: {
               'Authorization': `Bearer ${token}`

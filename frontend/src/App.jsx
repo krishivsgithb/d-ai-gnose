@@ -7,6 +7,7 @@ import SymptomCorrelator from './components/SymptomCorrelator';
 import MealTimeline from './components/MealTimeline';
 import { db } from './db/queueDb';
 import { syncPendingMeals } from './utils/syncEngine';
+import { API_BASE_URL } from './api';
 
 export default function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -25,7 +26,7 @@ export default function App() {
       const token = localStorage.getItem('token');
       if (!token) return;
 
-      const res = await fetch('http://localhost:5000/api/meals', {
+      const res = await fetch(`${API_BASE_URL}/meals`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
 
@@ -73,7 +74,7 @@ export default function App() {
         await db.pendingMeals.clear();
       }
       const token = localStorage.getItem('token');
-      await fetch('http://localhost:5000/api/meals', { 
+      await fetch(`${API_BASE_URL}/meals`, { 
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });

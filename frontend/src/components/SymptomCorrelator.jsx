@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { API_BASE_URL } from '../api';
 
 export default function SymptomCorrelator() {
   const [symptoms, setSymptoms] = useState('');
@@ -20,7 +21,7 @@ export default function SymptomCorrelator() {
 
     try {
       // 2. Pass Authorization header along with request
-      const res = await fetch('http://localhost:5000/api/analyze-symptoms', {
+      const res = await fetch(`${API_BASE_URL}/analyze-symptoms`, {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
@@ -37,7 +38,7 @@ export default function SymptomCorrelator() {
 
       setAnalysisResult(data.analysis || 'Analysis complete.');
     } catch (err) {
-      setAnalysisResult(err.message || "Backend unreachable. Ensure Express server is active on port 5000.");
+      setAnalysisResult(err.message || "Backend unreachable. Ensure Express server is active.");
     } finally {
       setIsAnalyzing(false);
     }

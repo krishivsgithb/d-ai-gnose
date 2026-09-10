@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { API_BASE_URL } from '../api';
 
 export default function Login({ onLoginSuccess, onSwitchToRegister }) {
   const [email, setEmail] = useState('');
@@ -12,7 +13,7 @@ export default function Login({ onLoginSuccess, onSwitchToRegister }) {
     setError('');
 
     try {
-      const response = await fetch('http://localhost:5000/api/auth/login', {
+      const response = await fetch(`${API_BASE_URL}/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -43,12 +44,12 @@ export default function Login({ onLoginSuccess, onSwitchToRegister }) {
         <div className="flex items-center gap-3 mb-6">
           <div className="p-2.5 bg-emerald-500/10 border border-emerald-500/30 rounded-xl text-emerald-400 font-bold text-lg">
             <img 
-             src="/gemini.svg" 
-             alt="D-AI-GNOSE Logo" 
-             className="w-12 h-12 shadow-lg rounded-xl"
-             />
-            </div>
-           <div>
+              src="/gemini.svg" 
+              alt="D-AI-GNOSE Logo" 
+              className="w-12 h-12 shadow-lg rounded-xl"
+            />
+          </div>
+          <div>
             <h1 className="text-xl font-bold text-white tracking-wide">D-AI-GNOSE</h1>
             <p className="text-xs text-emerald-400/80">Diagnostic Dietary Intelligence</p>
           </div>

@@ -1,4 +1,5 @@
 import { db } from '../db/queueDb';
+import { API_BASE_URL } from '../api';
 
 export const syncPendingMeals = async () => {
   console.log('🔍 [SyncEngine] Starting sync check...');
@@ -18,7 +19,7 @@ export const syncPendingMeals = async () => {
     try {
       console.log('🚀 [SyncEngine] Attempting sync for item:', meal.foodItem);
 
-      const response = await fetch('http://localhost:5000/api/meals', {
+      const response = await fetch(`${API_BASE_URL}/meals`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
