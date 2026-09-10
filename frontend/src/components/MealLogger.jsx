@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import API from '../services/api';
+import API from '../api';
 
 export default function MealLogger({ onMealLogged }) {
   const [foodItem, setFoodItem] = useState('');
