@@ -1,10 +1,12 @@
 import axios from 'axios';
 
-// Dynamically use Vercel's environment variable or fallback to localhost for development
+// Get the base URL directly from Vite's env, falling back to localhost only for local dev
+const BASE_URL = import.meta.env.VITE_API_URL 
+  ? `${import.meta.env.VITE_API_URL.replace(/\/$/, '')}/api` 
+  : 'http://localhost:5000/api';
+
 const API = axios.create({
-  baseURL: import.meta.env.VITE_API_URL 
-    ? `${import.meta.env.VITE_API_URL}/api` 
-    : 'http://localhost:5000/api'
+  baseURL: BASE_URL
 });
 
 // Attach JWT Authorization token automatically
